@@ -19,8 +19,34 @@ const getUserById = async (req, res) => {
   }
 };
 
+const createUser = async (req, res) => {
+  try {
+    console.log('req.body:', req.body);
+    console.log('req.file:', req.file);
+
+    const userData = {
+      name: req.body.name,
+      role: req.body.role,
+      status: req.body.status,
+      email: req.body.email,
+      contact: req.body.contact,
+      image: req.file ? req.file.buffer : null,
+    };
+
+    const user = await User.create(userData);
+
+    // Emit notification to admin
+    // const io = req.app.get("io");
+    // io.emit("userCreated", { user });
+
+    res.status(201).json({ message: 'User created', user });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
 module.exports = {
   getAllUsers,
   getUserById,
+  createUser,
 };

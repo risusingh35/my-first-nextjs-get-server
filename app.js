@@ -4,7 +4,6 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const helmet = require("helmet");
-const { Server } = require("socket.io");
 const connectDB = require("./src/config/dbConfig");
 const errorLogger = require("./src/middlewares/errorLogger");
 const userRoutes = require("./src/routes/userRoutes");
