@@ -12,6 +12,7 @@ const profilerRoute = require("./src/routes/profilerRoute");
 const readStreamRoutes = require("./src/routes/readStreamRoutes");
 const FourNot4Route = require("./src/routes/404Routes");
 const mailerService =require('./src/services/mailerService')
+const converterRoutes =require('./src/routes/converterRoutes')
 // Ensure the logs directory exists
 const logDir = path.join(__dirname, "logs");
 if (!fs.existsSync(logDir)) {
@@ -29,6 +30,7 @@ app.use("/api/auth", authRoutes);
 app.use("/users", userRoutes);
 
 app.use("/readlargefilestream", readStreamRoutes);
+app.use("/convert", converterRoutes);
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
